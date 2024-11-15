@@ -64,10 +64,8 @@ y_test = y[N:]
 
 
 # Take a single example of X
-input_shape = X[0].shape 
-
-# Take a single example of y
-output_shape = y[0].shape
+input_shape = X.shape
+output_shape = y.shape
 
 
 # Set random seed
