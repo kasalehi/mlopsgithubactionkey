@@ -17,4 +17,4 @@ jobs:
           echo "## metricmodle">report.md
           cat metrics.txt>>report.md
 
-          cml-send-comment-report.md
+          cml-send-comment report.md
