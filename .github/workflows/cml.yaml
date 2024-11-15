@@ -13,3 +13,7 @@ jobs:
         run: |
           pip install -r requirements.txt
           python model.py
+          echo "##mlops"> report.md
+          cat metrics.txt>>report.md
+
+          cml-send-comment report.md
