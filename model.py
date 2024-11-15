@@ -68,9 +68,13 @@ model = tf.keras.Sequential([
 ])
 
 # Compile the model
-model.compile(loss=tf.keras.losses.mean_absolute_error,
-              optimizer=tf.keras.optimizers.SGD(),
-              metrics=['mae'])
+# Compile the model
+model.compile(
+    loss=tf.keras.losses.MeanAbsoluteError(),  # Use the class explicitly
+    optimizer=tf.keras.optimizers.SGD(),
+    metrics=['mae']
+)
+
 
 # Fit the model
 model.fit(X_train, y_train, epochs=100)
