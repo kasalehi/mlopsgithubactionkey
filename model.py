@@ -68,7 +68,7 @@ model = tf.keras.Sequential([
 ])
 
 # Compile the model
-model.compile(loss=tf.keras.losses.mean_absolute_error,
+model.compile(loss=tf.keras.losses.MeanAbsoluteError(),
               optimizer=tf.keras.optimizers.SGD(),
               metrics=['mae'])
 
