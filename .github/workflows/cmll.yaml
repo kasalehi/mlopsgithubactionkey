@@ -1,21 +1,41 @@
-name: the firsttensorflow_model 
+name: the firsttensorflow_model
 on: [push]
+permissions:
+  contents: write  # Required for creating comments
+
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      # Step to checkout the code
       - uses: actions/checkout@v3
+
+      # Step to set up Python
       - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # Specify your required Python version
+
+      # Step to set up CML
       - uses: iterative/setup-cml@v1
+
+      # Step to train the model and create the report
       - name: Train model
         env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN: 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  # Directly add the token here
         run: |
+          # Install required Python dependencies
           pip install -r requirements.txt
+
+          # Run the model training script
           python model.py
 
-          echo "## metricmodle">> report.md
-          cat metrics.txt>> report.md
-          
+          # Create the report
+          echo "## metricmodle" >> report.md
+          cat metrics.txt >> report.md
 
-          cml comment create report.md
+          # Add watermark to the report
+          echo '![](https://cml.dev/watermark.png#10c969338a6073b01238b2f0f21c89b488ac20b9 "CML watermark")' >> report.md
+
+          # Post the report as a comment on the commit
+          cml comment create --token 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 report.md
+
